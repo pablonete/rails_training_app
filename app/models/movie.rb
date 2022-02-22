@@ -15,13 +15,6 @@ class Movie < ApplicationRecord
 
   before_validation :set_director_by_name
 
-  def rerelease(year)
-    new_movie = self.dup
-    new_movie.year = year
-    new_movie.save!
-    new_movie
-  end
-
   def self.titles
     # all.map { |movie| movie.title }
     # or
@@ -38,6 +31,13 @@ class Movie < ApplicationRecord
 
   def self.count_with_facebook_likes(target_likes)
     where("facebook_likes > ?", target_likes).count
+  end
+
+  def rerelease(year:)
+    dup.tap do |rerelease|
+      rerelease.year = year
+      rerelease.save!  
+    end
   end
 
   private
