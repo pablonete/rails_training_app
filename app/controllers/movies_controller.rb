@@ -53,6 +53,17 @@ class MoviesController < ApplicationController
     end
   end
 
+  def rerelease
+    movie = Movie.find(params[:id])
+
+    new_movie = Movie.create(
+      title: movie.title,
+      director: movie.director,
+      year: params[:year])
+
+    redirect_to new_movie
+  end
+
   private
 
   def movie_params
