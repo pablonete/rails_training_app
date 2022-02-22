@@ -15,6 +15,13 @@ class Movie < ApplicationRecord
 
   before_validation :set_director_by_name
 
+  def rerelease(year)
+    new_movie = self.dup
+    new_movie.year = year
+    new_movie.save!
+    new_movie
+  end
+
   def self.titles
     # all.map { |movie| movie.title }
     # or
