@@ -2,7 +2,7 @@
 
 <p>What's the new year for <strong><%= movie.title %> (<%= movie.year %>)</p>
 
-<%= form_with html: { class: "form" }, url: movie_rereleases_path(movie.id) do |f| %>
+<%= form_for :rerelease, html: { class: "form" }, url: movie_rereleases_path(movie.id) do |f| %>
   <%= f.label :year %>
   <%= f.text_field :year %>
   <br>

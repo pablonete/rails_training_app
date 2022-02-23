@@ -33,13 +33,6 @@ class Movie < ApplicationRecord
     where("facebook_likes > ?", target_likes).count
   end
 
-  def rerelease(year:)
-    dup.tap do |rerelease|
-      rerelease.year = year
-      rerelease.save!  
-    end
-  end
-
   private
 
   def set_director_by_name

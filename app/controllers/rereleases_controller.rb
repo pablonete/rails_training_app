@@ -4,12 +4,17 @@ class RereleasesController < ApplicationController
   end
 
   def create
-    new_movie = movie.rerelease(year: params[:year])
+    rereleaser = Rereleaser.new(movie)
+    rerelease = rereleaser.run(rerelease_params)
 
-    redirect_to new_movie
+    redirect_to rerelease
   end
 
   def movie
     @movie ||= Movie.find(params[:movie_id])
+  end
+
+  def rerelease_params
+    params.require(:rerelease).permit(:year)
   end
 end
