@@ -2,6 +2,8 @@
 
 <p>What's the new year for <strong><%= rerelease.original.title %> (<%= rerelease.original.year %>)</p>
 
+<%= render "errors", model: rerelease %>
+
 <%= form_for rerelease, as: :rerelease, html: { class: "form" }, url: movie_rereleases_path(rerelease.original) do |f| %>
   <%= f.label :year %>
   <%= f.text_field :year %>

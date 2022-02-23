@@ -25,4 +25,13 @@ class RereleaseTest < ActiveSupport::TestCase
     rerelease = Movie.find_by(title: movie.title, year: 2019)
     assert_equal "2019", rerelease.year
   end
+
+  test "rerelease requires a new year" do
+    movie = create(:movie, year: "1992")
+    rerelease = Rerelease.new(movie, {})
+    assert_equal 0, rerelease.errors.size
+
+    refute_predicate rerelease, :save
+    assert_equal 1, rerelease.errors.size
+  end
 end

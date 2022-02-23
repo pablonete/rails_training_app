@@ -12,6 +12,16 @@ class RereleasesTest < ActionDispatch::IntegrationTest
     assert_equal "1992", movie.year
   end
 
+  test "will error if saving without a year" do
+    movie = create(:movie, year: "1992")
+
+    post movie_rereleases_path(movie.id), params: {
+      "rerelease[year]": "",
+    }
+
+    assert_select "ul.errors li", text: "Year can't be blank"
+  end
+
   test "redirects to movie rerelease show page" do
     movie = create(:movie, year: "1992")
 

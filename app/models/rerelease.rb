@@ -1,5 +1,7 @@
 class Rerelease
+  include ActiveModel::Model
   attr_accessor :original, :params
+  validates_presence_of :year
 
   def initialize(original, params)
     @original = original
@@ -15,8 +17,10 @@ class Rerelease
   end
 
   def save
+    return false unless valid?
+
     @result = original.dup
     @result.year = params[:year]
-    @result.save!  
+    @result.save!
   end
 end
