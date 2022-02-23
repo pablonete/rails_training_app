@@ -1,8 +1,8 @@
 <h1>Rereleasing a movie</h1>
 
-<p>What's the new year for <strong><%= movie.title %> (<%= movie.year %>)</p>
+<p>What's the new year for <strong><%= rerelease.original.title %> (<%= rerelease.original.year %>)</p>
 
-<%= form_for :rerelease, html: { class: "form" }, url: movie_rereleases_path(movie.id) do |f| %>
+<%= form_for :rerelease, html: { class: "form" }, url: movie_rereleases_path(rerelease.original) do |f| %>
   <%= f.label :year %>
   <%= f.text_field :year %>
   <br>

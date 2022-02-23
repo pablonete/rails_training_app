@@ -1,6 +1,7 @@
 class RereleasesController < ApplicationController
   def new
-    render locals: { movie: movie }
+    rerelease = Rerelease.new(movie, {})
+    render locals: { rerelease: rerelease }
   end
 
   def create
