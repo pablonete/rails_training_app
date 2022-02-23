@@ -4,10 +4,10 @@ class RereleasesController < ApplicationController
   end
 
   def create
-    rereleaser = Rereleaser.new(movie)
-    rerelease = rereleaser.run(rerelease_params)
+    rerelease = Rerelease.new(movie, rerelease_params)
+    rerelease.save
 
-    redirect_to rerelease
+    redirect_to movie_path(rerelease.id)
   end
 
   def movie
