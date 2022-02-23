@@ -10,10 +10,13 @@ class Rerelease
     @result.id
   end
 
+  def year
+    params[:year]
+  end
+
   def save
-    @result = original.dup.tap do |rerelease|
-      rerelease.year = params[:year]
-      rerelease.save!  
-    end
+    @result = original.dup
+    @result.year = params[:year]
+    @result.save!  
   end
 end
