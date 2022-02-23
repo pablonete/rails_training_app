@@ -4,7 +4,7 @@
 
 <%= render "errors", model: rerelease %>
 
-<%= form_for rerelease, as: :rerelease, html: { class: "form" }, url: movie_rereleases_path(rerelease.original) do |f| %>
+<%= form_for rerelease, html: { class: "form" }, url: movie_rereleases_path(rerelease.original) do |f| %>
   <%= f.label :year %>
   <%= f.text_field :year %>
   <br>
