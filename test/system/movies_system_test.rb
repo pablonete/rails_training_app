@@ -96,4 +96,19 @@ class MoviesSystemTest < ApplicationSystemTestCase
 
     refute Movie.exists?(movie.id)
   end
+
+  test "rereleasing a movie" do
+    movie = create(:movie, year: "1980")
+
+    visit new_movie_rerelease_path(movie.id)
+
+    fill_in "Year", with: "2022"
+
+    click_on "Re-release"
+
+    assert_text "2022"
+    refute_text "1980"
+
+    assert_equal 2, Movie.where(title: movie.title).count
+  end
 end

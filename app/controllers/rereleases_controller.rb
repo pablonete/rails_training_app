@@ -1,9 +1,15 @@
 class RereleasesController < ApplicationController
-  def create
-    origin = Movie.find(params[:movie_id])
+  def new
+    render locals: { movie: movie }
+  end
 
-    new_movie = origin.rerelease(year: params[:year])
+  def create
+    new_movie = movie.rerelease(year: params[:year])
 
     redirect_to new_movie
+  end
+
+  def movie
+    @movie ||= Movie.find(params[:movie_id])
   end
 end
