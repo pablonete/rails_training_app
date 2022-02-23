@@ -12,7 +12,7 @@ class Rerelease
   end
 
   def id
-    @result.id
+    @result&.id
   end
 
   def save
